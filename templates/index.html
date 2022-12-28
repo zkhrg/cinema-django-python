@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="wrapper row2">
+  <section id="latest" class="hoc container clear">
+    <div class="sectiontitle">
+      <h6 class="heading">Лидеры проката прямо сейчас!</h6>
+      <p>Эти фильмы уже который день остаются самыми посещаемыми за неделю</p>
+    </div>
+    <ul class="nospace group overview">
+      {% for movie in movies_list %}
+      {% if forloop.counter0 < 3 %}
+      {% if forloop.first %}
+        <li class="one_third first">
+        <article>
+          <figure><a href="#"><img src="{{ movie.photo.url }}" alt=""></a>
+          </figure>
+          <div class="excerpt">
+            <h6 class="heading">{{ movie.title }}</h6>
+            <ul class="nospace meta">
+              <li><i class="fas fa-tags"></i> <a href="#">{{ movie.age_limit }}+</a></li>
+            </ul>
+            <p>{{ movie.description }}</p>
+            <footer><a class="btn" href="{% url 'movie' movie.movie_slug %}">выбрать сеанс</a></footer>
+          </div>
+        </article>
+      </li>
+      {% else %}
+        <li class="one_third">
+        <article>
+          <figure><a href="#"><img src="{{ movie.photo.url }}" alt=""></a>
+          </figure>
+          <div class="excerpt">
+            <h6 class="heading">{{ movie.title }}</h6>
+            <ul class="nospace meta">
+              <li><i class="fas fa-tags"></i> <a href="#">{{ movie.age_limit }}+</a></li>
+            </ul>
+            <p>{{ movie.description }}</p>
+            <footer><a class="btn" href="{% url 'movie' movie.movie_slug%}">выбрать сеанс</a></footer>
+          </div>
+        </article>
+      </li>
+      {% endif %}
+      {% endif %}
+      {% endfor %}
+    </ul>
+  </section>
+<div class="wrapper gradient">
+  <section id="testimonials" class="hoc container clear">
+    <div class="sectiontitle">
+      <h6 class="heading">Мы лучшие!</h6>
+      <p>Отзывы наших клиентов говорят о многом</p>
+    </div>
+    <article class="one_half first">
+      <blockquote>Кинотеатр неплох, есть свои особенности!</blockquote>
+      <h6 class="heading">В. Степан</h6>
+      <em>Эксперт сайтостроения</em></article>
+    <article class="one_half">
+      <blockquote>Лучший кинотеатр в котором я когда-либо была</blockquote>
+      <h6 class="heading">М. Дарья</h6>
+      <em>Арт-дизайнер икеа</em></article>
+  </section>
+</div>
+<div class="wrapper row3">
+  <main class="hoc container clear">
+    <div class="sectiontitle">
+      <h6 class="heading">У нас замечательные залы!</h6>
+      <p>Посещение свободно для всех, кто купил билет</p>
+    </div>
+    <ul class="nospace group overview">
+      {% for hall in hall_list %}
+      {% if forloop.counter0 < 3 %}
+      <li class="one_third">
+        <figure><a href="#"><img src="{{ hall.photo }}" alt=""></a>
+          <figcaption>
+            <h6 class="heading" style="color: #4FB5F5; font-weight: bold">{{ hall.title }}</h6>
+          </figcaption>
+        </figure>
+      </li>
+      {% endif %}
+      {% endfor %}
+    </ul>
+    <!-- / main body -->
+  </main>
+</div>
+{% endblock %}

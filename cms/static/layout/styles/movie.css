@@ -1,0 +1,37 @@
+.btn-group button {
+  background-color: #04AA6D;
+  border: 1px solid green;
+  color: white;
+  padding: 10px 24px;
+  cursor: pointer;
+  float: left;
+  margin-left: 10px;
+}
+.btn-group:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.btn-group button:hover {
+  background-color: #3e8e41;
+}
+.btn-group {
+  padding: 30px 30px 30px 30px;
+}
+
+.mp {
+  alignment: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 500px;
+  max-height: 500px;
+  box-shadow: 10px 10px 10px #474747;
+}
+
+.title {
+  margin-top: 28px;
+  text-align: center;
+}
+

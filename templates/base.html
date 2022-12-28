@@ -1,0 +1,67 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="">
+<head>
+<title>Кинотеатр</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="{% static 'layout/styles/layout.css' %}" rel="stylesheet" type="text/css" media="all">
+</head>
+<body id="top">
+<div class="wrapper row0">
+  <div id="topbar" class="hoc clear">
+    <div class="fl_left">
+      <ul class="nospace">
+        <li><a href="{% url 'start' %}"><i class="fas fa-home fa-lg"></i></a></li>
+        <li><a href="{% url 'movies' %}">Купить билет</a></li>
+        <li><a href="{% url 'halls' %}">Наши залы</a></li>
+        {% if auth %}
+        <li><a href="{% url 'profile' %}">Личный кабинет</a></li>
+        {% else %}
+        <li><a href="{% url 'login' %}">Войти</a></li>
+        {% endif %}
+      </ul>
+    </div>
+    <div class="fl_right">
+      <ul class="nospace">
+        <li><i class="fas fa-phone rgtspace-5"></i>
+          <a href="tel:+79990266150">+7 (999) 026 6150</a>
+        </li>
+        <li><i class="fas fa-envelope rgtspace-5"></i>
+          <a href="mailto: info@domain.com">info@domain.com</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="wrapper row1">
+  <header id="header" class="hoc clear">
+    <div id="logo" class="one_half first">
+      <h1 class="logoname"><a href="{% url 'start' %}"><span>LL</span> cinema</a></h1>
+    </div>
+    <div class="one_half">
+      <ul class="nospace clear">
+        <li class="one_half first" style="visibility: hidden;">
+          <div class="block clear"><i class="fas fa-phone"></i> <span><strong class="block">Call Us:</strong> +00 (123) 456 7890</span> </div>
+        </li>
+        <li class="one_half">
+          <div class="block clear"><i class="far fa-clock"></i> <span><strong class="block"> Пон. - Суб.:</strong> 08:00 - 22:00</span> </div>
+        </li>
+      </ul>
+    </div>
+  </header>
+</div>
+
+{% block content %}
+{% endblock %}
+
+</div>
+<div class="wrapper row5">
+  <div id="copyright" class="hoc clear">
+    <p class="fl_left">Copyright &copy; 2021 - Все права защищены - <a href="#">Localhost</a></p>
+  </div>
+  <a id="backtotop" href="#top" class="visible"><i class="fas fa-chevron-up"></i></a>
+<script src="{% static 'layout/scripts/jquery.backtotop.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link href="{% static 'layout/styles/movie.css' %}" rel="stylesheet" type="text/css" media="all">
+<a href="#"><img class="mp" src="{{ movie.photo.url }}" alt=""></a>
+<h1 class="title">{{ movie.title }}</h1>
+
+<div class="btn-group">
+  {% for seance in seance_list %}
+  <form action="{%url 'seance' movie.movie_slug seance.seance_slug%}" method="post">
+      {% csrf_token %}
+      <button type="submit">
+        Сеанс {{ seance.time }} | {{ seance.date }}
+      </button>
+  </form>
+  {% endfor %}
+</div>
+{% endblock %}

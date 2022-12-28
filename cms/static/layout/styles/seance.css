@@ -1,0 +1,56 @@
+.place {
+  background-color: #04AA6D;
+  border: 1px solid green;
+  color: white;
+  padding: 8px 10px;
+  cursor: pointer;
+  float: left;
+  margin-left: 10px;
+}
+.buy {
+  font-weight: bold;
+  font-size: 20pt;
+  background-color: #00ACEE;
+  border: 1px solid #00ACEE;
+  color: white;
+  padding: 8px 10px;
+  cursor: pointer;
+  float: left;
+  margin-left: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.setted_place {
+  background-color: #b3b3b3;
+  border: 1px solid black;
+  color: #474747;
+  padding: 8px 10px;
+  float: left;
+  margin-left: 10px;
+}
+.row_title {
+  background-color: #474747;
+  color: white;
+  border: 1px solid black;
+  padding: 8px 10px;
+  float: left;
+  margin-left: 10px;
+}
+
+.btn-group:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.btn-group {
+  padding: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  margin-top: 28px;
+  text-align: center;
+}
+

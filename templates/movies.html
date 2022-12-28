@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static%}
+{% block content %}
+<div class="wrapper row2">
+  <section id="latest" class="hoc container clear">
+    <ul class="nospace group overview">
+      {% for movie in movies_list %}
+      {% if forloop.first %}
+        <li class="one_third first">
+        <article>
+          <figure><a href="#"><img src="{{ movie.photo.url }}" alt=""></a>
+          </figure>
+          <div class="excerpt">
+            <h6 class="heading">{{ movie.title }}</h6>
+            <ul class="nospace meta">
+              <li><i class="fas fa-tags"></i> <a href="#">{{ movie.age_limit }}+</a></li>
+            </ul>
+            <p>{{ movie.description }}</p>
+            <footer><a class="btn" href="{% url 'movie' movie.movie_slug %}">выбрать сеанс</a></footer>
+          </div>
+        </article>
+      </li>
+      {% else %}
+        <li class="one_third">
+        <article>
+          <figure><a href="#"><img src="{{ movie.photo.url }}" alt=""></a>
+          </figure>
+          <div class="excerpt">
+            <h6 class="heading">{{ movie.title }}</h6>
+            <ul class="nospace meta">
+              <li><i class="fas fa-tags"></i> <a href="#">{{ movie.age_limit }}+</a></li>
+            </ul>
+            <p>{{ movie.description }}</p>
+            <footer><a class="btn" href="{% url 'movie' movie.movie_slug%}">выбрать сеанс</a></footer>
+          </div>
+        </article>
+      </li>
+      {% endif %}
+      {% endfor %}
+    </ul>
+  </section>
+</div>
+{% endblock %}

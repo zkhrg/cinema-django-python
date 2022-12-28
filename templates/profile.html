@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <h1 style="margin-left: 20px">Ваши заказы</h1>
+    <table style="display: grid; align-items: center; justify-content: center; margin-top: 10px;">
+      <tr>
+          <th style="background-color: #4FB5F5">Фильм</th>
+          <th style="background-color: #4FB5F5">Цена</>
+          <th style="background-color: #4FB5F5">Зал</>
+          <th style="background-color: #4FB5F5">Ряд</>
+          <th style="background-color: #4FB5F5">Место</>
+          <th style="background-color: #4FB5F5">Дата сеанса</>
+      </tr>
+    {% for order in orders_list %}
+        <tr>
+            <th style="background-color: #4FB5F5">{{ order.ticket.seance.movie }}</>
+            <th style="background-color: #4FB5F5">{{ order.ticket.seance.base_price}}р.</th>
+            <th style="background-color: #4FB5F5">{{ order.ticket.seance.hall_id }}</th>
+            <th class="number_s" style="background-color: #4FB5F5">{{ order.ticket.row_number }}</th>
+            <th class="number_s" style="background-color: #4FB5F5">{{ order.ticket.place_number}}</th>
+            <th style="background-color: #4FB5F5">{{ order.ticket.seance.date }} {{ order.ticket.seance.time }}</th>
+        </tr>
+    {% endfor %}
+    </table>
+<a style="alignment: center;display: block;margin-left: auto;margin-right: auto; text-align: center; font-size: 12pt;" href="{% url 'logout' %}">Выйти</a>
+<script>
+    function correctNumbers() {
+        var ths = document.getElementsByClassName('number_s');
+        for (const th in ths) {
+            ths[th].textContent = String(Number(ths[th].textContent)+1)
+        }
+    }
+    window.onload = correctNumbers;
+</script>
+{% endblock %}

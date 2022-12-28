@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static%}
+{% block content %}
+<main class="hoc container clear">
+<ul class="nospace group overview">
+    {% for hall in halls_list %}
+      <li class="one_third">
+        <figure><a href="#"><img src="{{ hall.photo.url }}" alt=""></a>
+          <figcaption>
+            <h6 class="heading">{{ hall.title }}</h6>
+          </figcaption>
+        </figure>
+      </li>
+    {% endfor %}
+</ul>
+</main>
+{% endblock %}

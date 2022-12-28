@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% if auth %}
+<link href="{% static 'layout/styles/seance.css' %}" rel="stylesheet" type="text/css" media="all">
+  {% for row in row_count %}
+  <div class="btn-group">
+    <button class="row_title" style="min-width: 120px" >Ряд {{ forloop.counter }}</button>
+    {% for place in place_count %}
+        {% for ticket in tickets_list %}
+        {% if ticket.row_number == forloop.parentloop.parentloop.counter0 %}
+        {% if ticket.place_number == forloop.parentloop.counter0 %}
+          {% if ticket.status %}
+          <button onclick="changeColorOfButton(this)" value="not_selected" place="{{ ticket.row_number }}_{{ ticket.place_number }}" class="place">
+          {{ forloop.parentloop.counter }}</button>
+          {% else %}
+          <button onclick="changeColorOfButton(this)" value="setted_place" class="setted_place">
+          {{ forloop.parentloop.counter }}</button>
+          {% endif %}
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+    {% endfor %}
+  </div>
+  {% endfor %}
+
+    {% for message in messages %}
+      <div style="font-size: 10pt; display: flex; align-items: center; justify-content: center; margin-bottom: 5px; margin-top: 10px;">
+          {{ message }}
+      </div>
+    {% endfor %}
+
+    <div class="btn-group">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input type="submit" selected_places="" class="buy" name="buy_button" value="Купить!">
+            <input type="text" class="hidden" name="info2" value="">
+        </form>
+    </div>
+<script>
+  function changeColorOfButton(elmnt) {
+    var buy_button = document.getElementsByClassName('hidden')[0];
+    if (elmnt.value == "not_selected") {
+      if (buy_button.getAttribute("value") == "") {
+          buy_button.setAttribute("value", `${elmnt.getAttribute("place")}`);
+      } else {
+          buy_button.setAttribute("value", `${buy_button.getAttribute("value")} ${elmnt.getAttribute("place")}`);
+      }
+        elmnt.style.background = "red";
+        elmnt.value = "selected";
+    } else if (elmnt.value === "selected") {
+      var place = elmnt.getAttribute("place")
+      var place_length = place.length;
+      var places = buy_button.getAttribute("value")
+      slice_str = places.slice(-place_length)
+
+      if (place == slice_str) {
+          if (place_length == places.length) {
+              var ns = places.replace(`${place}`, "")
+              buy_button.setAttribute("value", ns)
+          } else {
+              var ns1 = places.replace(` ${place}`, "")
+              buy_button.setAttribute("value", ns1)
+          }
+      } else {
+          var places2 = buy_button.getAttribute("value")
+          if (place == places2.slice(0, place_length)) {
+              var kkm = places.replace(`${place} `, "")
+              buy_button.setAttribute("value", kkm)
+          } else {
+            var ccz = places.replace(` ${place}`, "")
+            buy_button.setAttribute("value", ccz)
+          }
+      }
+      elmnt.value = "not_selected";
+      elmnt.style.background = "#04AA6D";
+    }
+  }
+</script>
+{% else %}
+<a href="{% url 'login' %}" style="font-size: 17pt; display: flex; align-items: center; justify-content: center; margin-bottom: 40px;">Для того чтобы купить билет нужно авторизоваться!</a>
+{% endif %}
+{% endblock %}
